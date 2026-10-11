@@ -473,7 +473,8 @@ jobs:
           Copy-Item licenses/LICENSE-hde64.txt "$stage/"
           # Stamp the toolset (Prebuilt.cmake's compatibility gate): the family, and clang's own
           # version, which is what CMAKE_CXX_COMPILER_VERSION reports for a clang-cl consumer.
-          $clangVersion = ((& clang-cl.exe --version | Select-String 'clang version (\d+\.\d+\.\d+)').Matches | Select-Object -First 1).Groups[1].Value
+          $cache = "build/release-clang-cl-vcpkg-all/CMakeCache.txt"
+          $clangVersion = ((Get-Content $cache | Select-String '^CMAKE_CXX_COMPILER_VERSION:[^=]*=(\d+\.\d+(?:\.\d+)*)$').Matches | Select-Object -First 1).Groups[1].Value
           if (-not $clangVersion) { Write-Error "could not read clang-cl version"; exit 1 }
           $clangVersion | Out-File "$stage/TOOLSET_VERSION.txt" -Encoding ascii -NoNewline
           "clangcl" | Out-File "$stage/TOOLCHAIN_ID.txt" -Encoding ascii -NoNewline
@@ -516,10 +517,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ATTACH_TAG: ${{ inputs.attach_tag }} # via env, not template interpolation (injection-safe)
+          BUNDLE: ${{ steps.bundle.outputs.bundle }}
+          SHA: ${{ steps.bundle.outputs.sha }}
         run: |
           gh release view "$env:ATTACH_TAG" *> $null
           if ($LASTEXITCODE -ne 0) {
             gh release create "$env:ATTACH_TAG" --title "CommonLibSSE-NG $env:ATTACH_TAG" `
               --notes "Prebuilt CommonLib bundles for downstream consumers (config: skyrim all + rex_ini + rex_json + rex_toml + skse_xbyak). See PREBUILT.md."
           }
-          gh release upload "$env:ATTACH_TAG" "${{ steps.bundle.outputs.bundle }}" "${{ steps.bundle.outputs.sha }}" --clobber
+          gh release upload "$env:ATTACH_TAG" "$env:BUNDLE" "$env:SHA" --clobber
