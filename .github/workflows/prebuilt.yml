@@ -492,12 +492,14 @@ jobs:
         env:
           PREBUILT_DIR: ${{ github.workspace }}/${{ steps.bundle.outputs.stage }}
         run: |
+          $builtClang = ((Get-Content "build/release-clang-cl-vcpkg-all/CMakeCache.txt" | Select-String '^CMAKE_CXX_COMPILER:[^=]*=(.+)$').Matches | Select-Object -First 1).Groups[1].Value
+          if (-not $builtClang) { Write-Error "could not read the build compiler"; exit 1 }
           cmake -S tests/prebuilt-consumer-cmake -B build/cmake-selftest -G Ninja `
             --toolchain "$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-md `
             -DCMAKE_BUILD_TYPE=Release `
-            -DCMAKE_C_COMPILER=clang-cl `
-            -DCMAKE_CXX_COMPILER=clang-cl `
+            -DCMAKE_C_COMPILER="$builtClang" `
+            -DCMAKE_CXX_COMPILER="$builtClang" `
             -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL `
             -DCOMMONLIB_PREBUILT_DIR="$env:PREBUILT_DIR"
           if ($LASTEXITCODE -ne 0) { exit 1 }
