@@ -433,8 +433,9 @@ jobs:
       # Pre-install vcpkg deps via a CMake configure, wrapped in retry. This
       # is the only step that hits the network for vcpkg ports/tools, so a
       # transient GitHub-releases 504 gets retried here instead of failing
-      # the build. The subsequent run-cmake build step reuses this warm
-      # configure + the cached downloads, so it does no further network I/O.
+      # the build. The warm-up configures into a scratch directory: run-cmake picks a
+      # different clang than a plain shell, and a shared build tree would be reset by it.
+      # The build step reuses the cached packages, so it does no further network I/O.
       - name: Pre-install vcpkg dependencies (retry)
         uses: nick-fields/retry@v3
         with:
@@ -444,7 +445,7 @@ jobs:
           shell: pwsh
           command: |
             Set-Location "${{ github.workspace }}"
-            cmake --preset build-release-clang-cl-vcpkg-all -DREX_OPTION_INI=ON -DREX_OPTION_JSON=ON -DREX_OPTION_TOML=ON -DSKSE_SUPPORT_XBYAK=ON -DBUILD_TESTS=OFF -DCOMMONLIB_ENABLE_IPO=OFF
+            cmake -S . -B "$env:RUNNER_TEMP/vcpkg-warmup" --preset build-release-clang-cl-vcpkg-all -DREX_OPTION_INI=ON -DREX_OPTION_JSON=ON -DREX_OPTION_TOML=ON -DSKSE_SUPPORT_XBYAK=ON -DBUILD_TESTS=OFF -DCOMMONLIB_ENABLE_IPO=OFF
 
       - name: Build CommonLibSSE (all + rex_ini + rex_json + rex_toml + skse_xbyak, release)
         uses: lukka/run-cmake@v10
