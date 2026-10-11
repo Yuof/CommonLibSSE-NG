@@ -473,8 +473,8 @@ jobs:
           Copy-Item licenses/LICENSE-hde64.txt "$stage/"
           # Stamp the toolset (Prebuilt.cmake's compatibility gate): the family, and clang's own
           # version, which is what CMAKE_CXX_COMPILER_VERSION reports for a clang-cl consumer.
-          $cache = "build/release-clang-cl-vcpkg-all/CMakeCache.txt"
-          $clangVersion = ((Get-Content $cache | Select-String '^CMAKE_CXX_COMPILER_VERSION:[^=]*=(\d+\.\d+(?:\.\d+)*)$').Matches | Select-Object -First 1).Groups[1].Value
+          $compilerInfo = Get-ChildItem "build/release-clang-cl-vcpkg-all/CMakeFiles/*/CMakeCXXCompiler.cmake" | Select-Object -First 1
+          $clangVersion = ((Get-Content $compilerInfo | Select-String '^set\(CMAKE_CXX_COMPILER_VERSION "(\d+\.\d+(?:\.\d+)*)"\)').Matches | Select-Object -First 1).Groups[1].Value
           if (-not $clangVersion) { Write-Error "could not read clang-cl version"; exit 1 }
           $clangVersion | Out-File "$stage/TOOLSET_VERSION.txt" -Encoding ascii -NoNewline
           "clangcl" | Out-File "$stage/TOOLCHAIN_ID.txt" -Encoding ascii -NoNewline
