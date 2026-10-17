@@ -4,20 +4,16 @@
 
 namespace RE
 {
-	class SpellItem;
-
 	struct SpellsLearned
 	{
 	public:
+		// Carries no data: the game passes an uninitialized stack slot.
 		struct Event
 		{
-		public:
-			// members
-			SpellItem* spell;  // 00
 		};
-		static_assert(sizeof(Event) == 0x8);
+		static_assert(sizeof(Event) == 0x1);
 
 		static BSTEventSource<Event>* GetEventSource();
-		static void                   SendEvent(SpellItem* a_spell);
+		static void                   SendEvent();
 	};
 }
