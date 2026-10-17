@@ -26,8 +26,8 @@ namespace RE
 			kRefractions = 1 << 7,             // AddWater copies it to the water geometry property; descriptor 0x8
 			kVertexUV = 1 << 8,                // descriptor 0x1; BSWaterShader::SetupGeometry uploads 1.0 for it
 			kVertexAlphaDepth = 1 << 9,        // descriptors 0x1 and 0x80
-			kUnk10 = 1 << 10,                  // read from the NIF; with kLODWater and bAutoWaterSilhouetteReflections, AddWater sets the TESWaterReflections fog-coloured-clear flag (nif.xml: PROCEDURAL)
-			kUnk11 = 1 << 11,                  // read from the NIF; AddWater uses it to pick the TESWaterReflections flags (nif.xml: FOG)
+			kUnk10 = 1 << 10,                  // read from the NIF; with bAutoWaterSilhouetteReflections, AddWater makes the TESWaterReflections clear colour fog-based (nif.xml: PROCEDURAL)
+			kUnk11 = 1 << 11,                  // read from the NIF; AddWater tests it but only to set TESWaterReflections flags nothing reads (nif.xml: FOG)
 			kUseCubemapReflections = 1 << 14,  // descriptor 0x100; nif.xml places CUBEMAP at bit 13
 			kEnableFlowmap = 1 << 15,          // descriptor 0x200; SetupGeometry uploads flowmap constants
 			kBlendNormals = 1 << 16            // descriptor 0x400, only with the flowmap
