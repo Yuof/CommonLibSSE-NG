@@ -7,7 +7,7 @@ namespace RE
 	struct SpellsLearned
 	{
 	public:
-		// Carries no data: the game passes an uninitialized stack slot.
+		// Carries no data. Do not add fields.
 		struct Event
 		{
 		};
