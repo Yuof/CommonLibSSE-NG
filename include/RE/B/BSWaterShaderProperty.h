@@ -16,14 +16,14 @@ namespace RE
 		enum class WaterFlag
 		{
 			kNone = 0,
-			kWading = 1 << 0,    // set by the displacement geometry clone; selects the WADING shader define
-			kLODWater = 1 << 1,  // set on properties created for LOD water; selects the simple (extra 9) technique
-			kUnk2 = 1 << 2,      // set on the water geometry property by AddWater; technique descriptor 0x10 uploads screen-size constants
+			kDisplacement = 1 << 0,  // nif.xml DISPLACEMENT; set by the displacement geometry clone, selects the WADING shader define
+			kLODWater = 1 << 1,      // nif.xml LOD; set on properties created for LOD water, selects the simple (extra 9) technique
+			kDepth = 1 << 2,         // nif.xml DEPTH; set on the water geometry property by AddWater, technique descriptor 0x10 uploads screen-size constants
 			kUnderwater = 1 << 5,
 			kUseReflections = 1 << 6,
-			kUnk7 = 1 << 7,  // read from the NIF; AddWater copies it to the water geometry property; technique descriptor 0x8
-			kUnk8 = 1 << 8,  // read from the NIF; technique descriptor 0x1
-			kUnk9 = 1 << 9,  // read from the NIF; technique descriptors 0x1 and 0x80
+			kRefractions = 1 << 7,       // nif.xml REFRACTIONS; read from the NIF, AddWater copies it to the water geometry property, technique descriptor 0x8
+			kVertexUV = 1 << 8,          // nif.xml VERTEX_UV; read from the NIF, technique descriptor 0x1
+			kVertexAlphaDepth = 1 << 9,  // nif.xml VERTEX_ALPHA_DEPTH; read from the NIF, technique descriptors 0x1 and 0x80
 			kUseCubemapReflections = 1 << 14,
 			kEnableFlowmap = 1 << 15,
 			kBlendNormals = 1 << 16
