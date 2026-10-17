@@ -21,13 +21,15 @@ namespace RE
 			kDisplacement = 1 << 0,            // set by the displacement geometry clone; selects the WADING define (0x40)
 			kLODWater = 1 << 1,                // set on LOD water properties; selects the simple (extra 9) technique
 			kDepth = 1 << 2,                   // set on the water geometry property by AddWater; descriptor 0x10
-			kUnderwater = 1 << 5,              // selects the underwater (extra 8) technique
+			kUnderwater = 1 << 5,              // selects the underwater (extra 8) technique; GetRenderPasses mirrors the underwater global into it
 			kUseReflections = 1 << 6,          // descriptor 0x4
 			kRefractions = 1 << 7,             // AddWater copies it to the water geometry property; descriptor 0x8
-			kVertexUV = 1 << 8,                // descriptor 0x1
+			kVertexUV = 1 << 8,                // descriptor 0x1; BSWaterShader::SetupGeometry uploads 1.0 for it
 			kVertexAlphaDepth = 1 << 9,        // descriptors 0x1 and 0x80
+			kUnk10 = 1 << 10,                  // read from the NIF; tested by AddWater with kLODWater when choosing the water object flags (nif.xml: PROCEDURAL)
+			kUnk11 = 1 << 11,                  // read from the NIF; tested by AddWater when choosing the water object flags (nif.xml: FOG)
 			kUseCubemapReflections = 1 << 14,  // descriptor 0x100; nif.xml places CUBEMAP at bit 13
-			kEnableFlowmap = 1 << 15,          // descriptor 0x200
+			kEnableFlowmap = 1 << 15,          // descriptor 0x200; SetupGeometry uploads flowmap constants
 			kBlendNormals = 1 << 16            // descriptor 0x400, only with the flowmap
 		};
 
