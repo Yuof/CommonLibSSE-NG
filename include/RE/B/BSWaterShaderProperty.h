@@ -18,10 +18,10 @@ namespace RE
 			kNone = 0,
 			kWading = 1 << 0,  // set by the displacement geometry clone; selects the WADING shader define
 			kUnk1 = 1 << 1,    // selects the simple (extra 9) technique
-			kUnk2 = 1 << 2,    // technique descriptor 0x10
+			kUnk2 = 1 << 2,    // technique descriptor 0x10 (depth constants); set by AddWater on the water geometry
 			kUnderwater = 1 << 5,
 			kUseReflections = 1 << 6,
-			kUnk7 = 1 << 7,  // technique descriptor 0x8
+			kUnk7 = 1 << 7,  // technique descriptor 0x8; copied by AddWater
 			kUnk8 = 1 << 8,  // technique descriptor 0x1
 			kUnk9 = 1 << 9,  // technique descriptors 0x1 and 0x80
 			kUseCubemapReflections = 1 << 14,
