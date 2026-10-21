@@ -184,11 +184,9 @@ namespace
 		nonButtonOk = nonButtonOk && !typedKinect && !typedThumbstick && !typedMouseMove;
 #ifdef ENABLE_SKYRIM_AE
 		if (REL::Module::IsAtLeast(SKSE::RUNTIME_SSE_1_7_99)) {
-			bool typedMotionGesture = h->ProcessMotionGesture(nullptr);
-			bool typedSixaxis = h->ProcessSixaxis(nullptr);
-			SKSE::log::info("typed h->ProcessMotionGesture/ProcessSixaxis(nullptr) = {}/{}",
-				typedMotionGesture, typedSixaxis);
-			nonButtonOk = nonButtonOk && !typedMotionGesture && !typedSixaxis;
+			h->ProcessMotionGesture(nullptr, nullptr);
+			h->ProcessSixaxis(nullptr, nullptr);
+			SKSE::log::info("typed h->ProcessMotionGesture/ProcessSixaxis(nullptr, nullptr) returned");
 		}
 #endif
 		if SKYRIM_REL_VR_CONSTEXPR (REL::Module::IsVR()) {
