@@ -1,3 +1,19 @@
+## [15.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v14.1.0...v15.0.0) (2026-10-27)
+
+### ⚠ BREAKING CHANGES
+
+* **nicamera:** NiCamera::RUNTIME_DATA_VR no longer has viewFrustumArray, eyeViewportRects, eyeViewMatrices, eyeCullingProcs or unk1C8; they sat at the wrong offsets. Use eyeFrustums, eyePositions and eyeRotations (BSTArray of NiFrustum, NiPoint3 and NiMatrix3, one element per eye) and eyeCount instead: viewFrustumArray[i] becomes eyeFrustums[i], and GetNearPlane() is unchanged. eyeViewportRects, eyeViewMatrices and eyeCullingProcs have no replacement because the game has no such data there; code that read them was reading other memory and must be removed. No caller exists in this repo or in the plugin sources checked.
+
+### Features
+
+* **skse:** add GOG and Epic runtime versions ([#454](https://github.com/alandtse/CommonLibSSE-NG/issues/454)) ([8830570](https://github.com/alandtse/CommonLibSSE-NG/commit/8830570fe56cbcd7da509cbdf10a015450dfc4dd))
+
+### Bug Fixes
+
+* **BGSScene:** type isShuttingDown as bool ([#457](https://github.com/alandtse/CommonLibSSE-NG/issues/457)) ([e387f5f](https://github.com/alandtse/CommonLibSSE-NG/commit/e387f5f861a601e8e7cbacf632f6aad9bcb76ff3))
+* **bsresource:** stop releasing the stream twice ([#453](https://github.com/alandtse/CommonLibSSE-NG/issues/453)) ([b8a8cf4](https://github.com/alandtse/CommonLibSSE-NG/commit/b8a8cf4ec3b2287cc84efc210011777b2a546a1f))
+* **nicamera:** correct VR eye array layout ([#456](https://github.com/alandtse/CommonLibSSE-NG/issues/456)) ([a776a41](https://github.com/alandtse/CommonLibSSE-NG/commit/a776a410ab09c2e5e29471d08135843e7af252d7))
+
 ## [14.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v14.0.1...v14.1.0) (2026-10-27)
 
 ### Features
