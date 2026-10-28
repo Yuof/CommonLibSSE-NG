@@ -136,16 +136,16 @@ namespace RE
 	bool           overrodeTESWorldSpace; /* 092 */ \
 	bool           initialized;           /* 093 */ \
 	bool           refreshPlayerMarker;   /* 094 */ \
-	std::uint8_t   unk305C5;              /* 095 */ \
-	std::uint8_t   unk305C6;              /* 096 */ \
+	bool           refreshMapAngle;       /* 095 */ \
+	bool           closing;               /* 096 */ \
 	bool           controlsReady;         /* 097 */ \
 	std::uint8_t   unk305C8;              /* 098 */ \
-	std::uint8_t   unk305C9;              /* 099 */ \
+	bool           fastTravelConfirmed;   /* 099 */ \
 	std::uint8_t   unk305CA;              /* 09A */ \
-	std::uint8_t   unk305CB;              /* 09B */ \
+	bool           ownsTempMarkerRef;     /* 09B */ \
 	std::uint32_t  pad305CC;              /* 09C */ \
-	NiAVObject*    unk305D0;              /* 0A0 */ \
-	NiAVObject*    unk305D8;              /* 0A8 */ \
+	NiAVObject*    crosshairParent;       /* 0A0 */ \
+	NiAVObject*    locationBeaconParent;  /* 0A8 */ \
 	NiAVObject*    markerText3DNode;      /* 0B0 */ \
 	IMenu*         markerText3DMenu;      /* 0B8 */
 
