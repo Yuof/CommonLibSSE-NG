@@ -106,8 +106,8 @@ namespace RE
 	BSSoundHandle  unk30574;               /* 114 */ \
 	std::int32_t   pickCountdown;          /* 120 */ \
 	bool           savedPlayerUnderwater;  /* 124 */ \
-	std::uint8_t   unk30585;               /* 125 */ \
-	std::uint8_t   unk30586;               /* 126 */ \
+	bool           markersEnabled;         /* 125 */ \
+	bool           nonDoorMarkersEnabled;  /* 126 */ \
 	std::uint8_t   pad30587;               /* 127 */ \
 	std::uint8_t   unk30588;               /* 128 */ \
 	std::uint8_t   unk30589;               /* 129 */ \
@@ -116,7 +116,7 @@ namespace RE
 	bool           controlsReady;          /* 12C */ \
 	bool           currentLocationEnabled; /* 12D */ \
 	bool           fastTravelConfirmed;    /* 12E */ \
-	std::uint8_t   unk3058F;               /* 12F */ \
+	bool           mapMarkersAllowed;      /* 12F */ \
 	bool           ownsTempMarkerRef;      /* 130 */ \
 	std::uint8_t   pad30591[7];            /* 131 */
 
@@ -150,7 +150,7 @@ namespace RE
 	bool           controlsReady;          /* 097 */ \
 	bool           currentLocationEnabled; /* 098 */ \
 	bool           fastTravelConfirmed;    /* 099 */ \
-	std::uint8_t   unk305CA;               /* 09A */ \
+	bool           mapMarkersAllowed;      /* 09A */ \
 	bool           ownsTempMarkerRef;      /* 09B */ \
 	std::uint32_t  pad305CC;               /* 09C */ \
 	NiAVObject*    crosshairParent;        /* 0A0 */ \
