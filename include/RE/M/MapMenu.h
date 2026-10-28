@@ -94,22 +94,31 @@ namespace RE
 
 		struct RUNTIME_DATA2
 		{
-#define RUNTIME_DATA2_CONTENT                     \
-	COMMON_MAP_DATA2_CONTENT                      \
-	MapCamera      camera;              /* 040 */ \
-	std::uint64_t  unk30530;            /* 0D0 */ \
-	TESWorldSpace* worldSpace;          /* 0D8 */ \
-	GFxValue       mapMovie;            /* 0E0 */ \
-	std::int32_t   selectedMarker;      /* 0F8 */ \
-	NiPoint3       cameraPickOrigin;    /* 0FC */ \
-	NiPoint3       cameraPickDirection; /* 108 */ \
-	BSSoundHandle  unk30574;            /* 114 */ \
-	std::uint64_t  unk30580;            /* 120 */ \
-	std::uint32_t  unk30588;            /* 128 */ \
-	bool           controlsReady;       /* 12C */ \
-	std::uint8_t   unk3058D;            /* 12D */ \
-	std::uint16_t  unk3058E;            /* 12E */ \
-	std::uint64_t  unk30590;            /* 130 */
+#define RUNTIME_DATA2_CONTENT                        \
+	COMMON_MAP_DATA2_CONTENT                         \
+	MapCamera      camera;                 /* 040 */ \
+	std::uint64_t  unk30530;               /* 0D0 */ \
+	TESWorldSpace* worldSpace;             /* 0D8 */ \
+	GFxValue       mapMovie;               /* 0E0 */ \
+	std::int32_t   selectedMarker;         /* 0F8 */ \
+	NiPoint3       cameraPickOrigin;       /* 0FC */ \
+	NiPoint3       cameraPickDirection;    /* 108 */ \
+	BSSoundHandle  unk30574;               /* 114 */ \
+	std::int32_t   pickCountdown;          /* 120 */ \
+	bool           savedPlayerUnderwater;  /* 124 */ \
+	std::uint8_t   unk30585;               /* 125 */ \
+	std::uint8_t   unk30586;               /* 126 */ \
+	std::uint8_t   pad30587;               /* 127 */ \
+	std::uint8_t   unk30588;               /* 128 */ \
+	std::uint8_t   unk30589;               /* 129 */ \
+	bool           overrodeTESWorldSpace;  /* 12A */ \
+	bool           cameraSetupPending;     /* 12B */ \
+	bool           controlsReady;          /* 12C */ \
+	bool           currentLocationEnabled; /* 12D */ \
+	bool           fastTravelConfirmed;    /* 12E */ \
+	std::uint8_t   unk3058F;               /* 12F */ \
+	bool           ownsTempMarkerRef;      /* 130 */ \
+	std::uint8_t   pad30591[7];            /* 131 */
 
 			RUNTIME_DATA2_CONTENT
 		};
@@ -117,37 +126,37 @@ namespace RE
 
 		struct VR_RUNTIME_DATA2
 		{
-#define VR_RUNTIME_DATA2_CONTENT                    \
-	COMMON_MAP_DATA2_CONTENT                        \
-	NiPoint3       unk30570;              /* 040 */ \
-	float          unk3057C;              /* 04C */ \
-	float          unk30580;              /* 050 */ \
-	std::uint32_t  unk30584;              /* 054 */ \
-	std::uint64_t  unk30588;              /* 058 */ \
-	TESWorldSpace* worldSpace;            /* 060 */ \
-	GFxValue       mapMovie;              /* 068 */ \
-	BSSoundHandle  unk305B0;              /* 080 */ \
-	std::uint8_t   unk305BC;              /* 08C */ \
-	std::uint8_t   unk305BD;              /* 08D */ \
-	std::uint8_t   unk305BE;              /* 08E */ \
-	std::uint8_t   unk305BF;              /* 08F */ \
-	std::uint8_t   unk305C0;              /* 090 */ \
-	std::uint8_t   unk305C1;              /* 091 */ \
-	bool           overrodeTESWorldSpace; /* 092 */ \
-	bool           initialized;           /* 093 */ \
-	bool           refreshPlayerMarker;   /* 094 */ \
-	bool           refreshMapAngle;       /* 095 */ \
-	bool           closing;               /* 096 */ \
-	bool           controlsReady;         /* 097 */ \
-	std::uint8_t   unk305C8;              /* 098 */ \
-	bool           fastTravelConfirmed;   /* 099 */ \
-	std::uint8_t   unk305CA;              /* 09A */ \
-	bool           ownsTempMarkerRef;     /* 09B */ \
-	std::uint32_t  pad305CC;              /* 09C */ \
-	NiAVObject*    crosshairParent;       /* 0A0 */ \
-	NiAVObject*    locationBeaconParent;  /* 0A8 */ \
-	NiAVObject*    markerText3DNode;      /* 0B0 */ \
-	IMenu*         markerText3DMenu;      /* 0B8 */
+#define VR_RUNTIME_DATA2_CONTENT                     \
+	COMMON_MAP_DATA2_CONTENT                         \
+	NiPoint3       unk30570;               /* 040 */ \
+	float          savedNearDistance;      /* 04C */ \
+	float          savedFarDistance;       /* 050 */ \
+	std::uint32_t  unk30584;               /* 054 */ \
+	std::uint64_t  unk30588;               /* 058 */ \
+	TESWorldSpace* worldSpace;             /* 060 */ \
+	GFxValue       mapMovie;               /* 068 */ \
+	BSSoundHandle  unk305B0;               /* 080 */ \
+	std::uint8_t   unk305BC;               /* 08C */ \
+	std::uint8_t   unk305BD;               /* 08D */ \
+	std::uint8_t   unk305BE;               /* 08E */ \
+	std::uint8_t   unk305BF;               /* 08F */ \
+	std::uint8_t   unk305C0;               /* 090 */ \
+	std::uint8_t   unk305C1;               /* 091 */ \
+	bool           overrodeTESWorldSpace;  /* 092 */ \
+	bool           initialized;            /* 093 */ \
+	bool           refreshPlayerMarker;    /* 094 */ \
+	bool           refreshMapAngle;        /* 095 */ \
+	bool           closing;                /* 096 */ \
+	bool           controlsReady;          /* 097 */ \
+	bool           currentLocationEnabled; /* 098 */ \
+	bool           fastTravelConfirmed;    /* 099 */ \
+	std::uint8_t   unk305CA;               /* 09A */ \
+	bool           ownsTempMarkerRef;      /* 09B */ \
+	std::uint32_t  pad305CC;               /* 09C */ \
+	NiAVObject*    crosshairParent;        /* 0A0 */ \
+	NiAVObject*    locationBeaconParent;   /* 0A8 */ \
+	NiAVObject*    markerText3DNode;       /* 0B0 */ \
+	IMenu*         markerText3DMenu;       /* 0B8 */
 
 			VR_RUNTIME_DATA2_CONTENT;
 		};
