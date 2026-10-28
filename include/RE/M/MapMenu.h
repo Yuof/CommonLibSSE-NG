@@ -138,7 +138,7 @@ namespace RE
 	bool           refreshPlayerMarker;   /* 094 */ \
 	std::uint8_t   unk305C5;              /* 095 */ \
 	std::uint8_t   unk305C6;              /* 096 */ \
-	std::uint8_t   unk305C7;              /* 097 */ \
+	bool           controlsReady;         /* 097 */ \
 	std::uint8_t   unk305C8;              /* 098 */ \
 	std::uint8_t   unk305C9;              /* 099 */ \
 	std::uint8_t   unk305CA;              /* 09A */ \
