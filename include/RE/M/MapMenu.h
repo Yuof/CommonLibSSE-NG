@@ -21,6 +21,7 @@ namespace RE
 	class MapTouchpadHandler;
 	class MapZoomHandler;
 	class MenuOpenCloseEvent;
+	class NiAVObject;
 	class TESWorldSpace;
 
 	// menuDepth = 3
@@ -116,22 +117,37 @@ namespace RE
 
 		struct VR_RUNTIME_DATA2
 		{
-#define VR_RUNTIME_DATA2_CONTENT         \
-	COMMON_MAP_DATA2_CONTENT             \
-	NiPoint3       unk30570;   /* 040 */ \
-	float          unk3057C;   /* 04C */ \
-	float          unk30580;   /* 050 */ \
-	std::uint32_t  unk30584;   /* 054 */ \
-	std::uint64_t  unk30588;   /* 058 */ \
-	TESWorldSpace* worldSpace; /* 060 */ \
-	GFxValue       mapMovie;   /* 068 */ \
-	BSSoundHandle  unk305B0;   /* 080 */ \
-	std::uint64_t  unk305C0;   /* 088 */ \
-	std::uint64_t  unk305C8;   /* 090 */ \
-	std::uint64_t  unk305D0;   /* 098 */ \
-	std::uint64_t  unk305D8;   /* 0A0 */ \
-	std::uint64_t  unk305E0;   /* 0A8 */ \
-	std::uint64_t  unk305E8;   /* 0B0 */
+#define VR_RUNTIME_DATA2_CONTENT                    \
+	COMMON_MAP_DATA2_CONTENT                        \
+	NiPoint3       unk30570;              /* 040 */ \
+	float          unk3057C;              /* 04C */ \
+	float          unk30580;              /* 050 */ \
+	std::uint32_t  unk30584;              /* 054 */ \
+	std::uint64_t  unk30588;              /* 058 */ \
+	TESWorldSpace* worldSpace;            /* 060 */ \
+	GFxValue       mapMovie;              /* 068 */ \
+	BSSoundHandle  unk305B0;              /* 080 */ \
+	std::uint8_t   unk305BC;              /* 08C */ \
+	std::uint8_t   unk305BD;              /* 08D */ \
+	std::uint8_t   unk305BE;              /* 08E */ \
+	std::uint8_t   unk305BF;              /* 08F */ \
+	std::uint8_t   unk305C0;              /* 090 */ \
+	std::uint8_t   unk305C1;              /* 091 */ \
+	bool           overrodeTESWorldSpace; /* 092 */ \
+	bool           initialized;           /* 093 */ \
+	bool           refreshPlayerMarker;   /* 094 */ \
+	std::uint8_t   unk305C5;              /* 095 */ \
+	std::uint8_t   unk305C6;              /* 096 */ \
+	std::uint8_t   unk305C7;              /* 097 */ \
+	std::uint8_t   unk305C8;              /* 098 */ \
+	std::uint8_t   unk305C9;              /* 099 */ \
+	std::uint8_t   unk305CA;              /* 09A */ \
+	std::uint8_t   unk305CB;              /* 09B */ \
+	std::uint32_t  pad305CC;              /* 09C */ \
+	NiAVObject*    unk305D0;              /* 0A0 */ \
+	NiAVObject*    unk305D8;              /* 0A8 */ \
+	NiAVObject*    markerText3DNode;      /* 0B0 */ \
+	IMenu*         markerText3DMenu;      /* 0B8 */
 
 			VR_RUNTIME_DATA2_CONTENT;
 		};
