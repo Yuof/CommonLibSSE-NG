@@ -116,21 +116,22 @@ namespace RE
 
 		struct VR_RUNTIME_DATA2
 		{
-#define VR_RUNTIME_DATA2_CONTENT             \
-	COMMON_MAP_DATA2_CONTENT                 \
-	NiPoint3       unk30570;       /* 040 */ \
-	std::int32_t   selectedMarker; /* 04C */ \
-	std::uint64_t  unk30580;       /* 050 */ \
-	std::uint64_t  unk30588;       /* 058 */ \
-	TESWorldSpace* worldSpace;     /* 060 */ \
-	GFxValue       mapMovie;       /* 068 */ \
-	BSSoundHandle  unk305B0;       /* 080 */ \
-	std::uint64_t  unk305C0;       /* 088 */ \
-	std::uint64_t  unk305C8;       /* 090 */ \
-	std::uint64_t  unk305D0;       /* 098 */ \
-	std::uint64_t  unk305D8;       /* 0A0 */ \
-	std::uint64_t  unk305E0;       /* 0A8 */ \
-	std::uint64_t  unk305E8;       /* 0B0 */
+#define VR_RUNTIME_DATA2_CONTENT         \
+	COMMON_MAP_DATA2_CONTENT             \
+	NiPoint3       unk30570;   /* 040 */ \
+	float          unk3057C;   /* 04C */ \
+	float          unk30580;   /* 050 */ \
+	std::uint32_t  unk30584;   /* 054 */ \
+	std::uint64_t  unk30588;   /* 058 */ \
+	TESWorldSpace* worldSpace; /* 060 */ \
+	GFxValue       mapMovie;   /* 068 */ \
+	BSSoundHandle  unk305B0;   /* 080 */ \
+	std::uint64_t  unk305C0;   /* 088 */ \
+	std::uint64_t  unk305C8;   /* 090 */ \
+	std::uint64_t  unk305D0;   /* 098 */ \
+	std::uint64_t  unk305D8;   /* 0A0 */ \
+	std::uint64_t  unk305E0;   /* 0A8 */ \
+	std::uint64_t  unk305E8;   /* 0B0 */
 
 			VR_RUNTIME_DATA2_CONTENT;
 		};
