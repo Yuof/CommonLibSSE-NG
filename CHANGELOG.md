@@ -1,3 +1,9 @@
+## [15.0.1](https://github.com/alandtse/CommonLibSSE-NG/compare/v15.0.0...v15.0.1) (2026-10-28)
+
+### Bug Fixes
+
+* **MapMenu:** correct VR runtime tail members ([#458](https://github.com/alandtse/CommonLibSSE-NG/issues/458)) ([5e27d30](https://github.com/alandtse/CommonLibSSE-NG/commit/5e27d30c8d25dafef48c8ebf02269276c5d3a9f1))
+
 ## [15.0.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v14.1.0...v15.0.0) (2026-10-27)
 
 ### ⚠ BREAKING CHANGES
