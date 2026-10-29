@@ -1,3 +1,14 @@
+## [15.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v15.0.1...v15.1.0) (2026-10-29)
+
+### Features
+
+* add rendering engine accessors ([#460](https://github.com/alandtse/CommonLibSSE-NG/issues/460)) ([69d0495](https://github.com/alandtse/CommonLibSSE-NG/commit/69d0495398960bb665647f55e3c803df3b93328a))
+
+### Bug Fixes
+
+* **BSShaderAccumulator:** correct VR layout ([#461](https://github.com/alandtse/CommonLibSSE-NG/issues/461)) ([d7cb908](https://github.com/alandtse/CommonLibSSE-NG/commit/d7cb90891d6f8230be9c7a0d85901d802fc66b3e))
+* **HighActorCuller:** return the static object ([#459](https://github.com/alandtse/CommonLibSSE-NG/issues/459)) ([aef32df](https://github.com/alandtse/CommonLibSSE-NG/commit/aef32dfc4e0655c6a760f48c082ffc915be65fc0))
+
 ## [15.0.1](https://github.com/alandtse/CommonLibSSE-NG/compare/v15.0.0...v15.0.1) (2026-10-28)
 
 ### Bug Fixes
