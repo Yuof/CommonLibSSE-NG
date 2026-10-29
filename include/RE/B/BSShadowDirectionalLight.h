@@ -43,7 +43,7 @@ namespace RE
 			func(this, a_camera);
 		}
 
-		void ApplyLensFlare()
+		void StepShadowAccumulators()
 		{
 			if (!REL::Module::IsVR()) {
 				return;
@@ -53,7 +53,7 @@ namespace RE
 			func(this);
 		}
 
-		void ClearShadowMaps()
+		void ClearShadowAccumulators()
 		{
 			if (!REL::Module::IsVR()) {
 				return;
