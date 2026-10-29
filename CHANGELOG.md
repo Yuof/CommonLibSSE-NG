@@ -1,3 +1,13 @@
+## [15.2.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v15.1.0...v15.2.0) (2026-10-29)
+
+### Features
+
+* **accumulator:** type VR deferred list ([#462](https://github.com/alandtse/CommonLibSSE-NG/issues/462)) ([e7004bc](https://github.com/alandtse/CommonLibSSE-NG/commit/e7004bc78824fefe04e0ecbfe2baea6807945c67))
+
+### Bug Fixes
+
+* **renderer:** call UpdateCameraData on Renderer ([#463](https://github.com/alandtse/CommonLibSSE-NG/issues/463)) ([c038363](https://github.com/alandtse/CommonLibSSE-NG/commit/c038363fadf3656472888e1b9469dd2244c48816))
+
 ## [15.1.0](https://github.com/alandtse/CommonLibSSE-NG/compare/v15.0.1...v15.1.0) (2026-10-29)
 
 ### Features
