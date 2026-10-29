@@ -5,6 +5,7 @@
 #include "RE/B/BSTArray.h"
 #include "RE/M/MemoryManager.h"
 #include "RE/N/NiColor.h"
+#include "REL/Relocation.h"
 
 namespace RE
 {
@@ -49,6 +50,12 @@ namespace RE
 
 		void CopyMembers(BSLightingShaderProperty* a_other);
 		void InvalidateTextures(std::uint32_t a_unk1);
+		bool IsValidLight(BSLight* a_light)
+		{
+			using func_t = bool (*)(BSLightingShaderProperty*, BSLight*);
+			static REL::Relocation<func_t> func{ RELOCATION_ID(98902, 105550) };
+			return func(this, a_light);
+		}
 
 		// Engine's own CreateClone allocates kSizeVR on VR, not sizeof(this).
 		inline static constexpr std::size_t kSizeFlat = 0x160;

@@ -79,7 +79,9 @@ namespace RE
 
 		virtual ~Sky();  // 00
 
-		static Sky* GetSingleton();
+		static Sky*                 GetSingleton();
+		[[nodiscard]] static float& GetLightLODStartFadeSquared() noexcept;
+		[[nodiscard]] static float& GetLightLODEndFadeSquared() noexcept;
 
 		[[nodiscard]] float GetSunriseBegin();
 		[[nodiscard]] float GetSunriseEnd();

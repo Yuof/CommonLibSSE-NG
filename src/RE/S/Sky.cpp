@@ -12,6 +12,18 @@ namespace RE
 		return func();
 	}
 
+	float& Sky::GetLightLODStartFadeSquared() noexcept
+	{
+		static REL::Relocation<float*> distance{ RELOCATION_ID(527668, 414582) };
+		return *distance;
+	}
+
+	float& Sky::GetLightLODEndFadeSquared() noexcept
+	{
+		static REL::Relocation<float*> distance{ RELOCATION_ID(527669, 414583) };
+		return *distance;
+	}
+
 	float Sky::GetSunriseBegin()
 	{
 		float& cache = *REL::Relocation<float*>{ RELOCATION_ID(515516, 401655) };

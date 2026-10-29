@@ -15,6 +15,12 @@ namespace RE
 		return *singleton;
 	}
 
+	std::int32_t& TES::GetGridsToLoadCopy()
+	{
+		static REL::Relocation<std::int32_t*> gridsToLoadCopy{ RELOCATION_ID(527644, 414596) };
+		return *gridsToLoadCopy;
+	}
+
 	void TES::ForEachCell(std::function<void(TESObjectCELL*)> a_callback)
 	{
 		if (interiorCell) {

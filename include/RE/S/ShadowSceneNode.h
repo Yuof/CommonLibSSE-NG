@@ -3,6 +3,7 @@
 #include "RE/B/BSAtomic.h"
 #include "RE/B/BSTArray.h"
 #include "RE/N/NiNode.h"
+#include "REL/Relocation.h"
 #include "REL/RuntimeDataAccessors.h"
 
 namespace RE
@@ -122,6 +123,18 @@ namespace RE
 
 		BSLight* AddLight(NiLight* a_light, const LIGHT_CREATE_PARAMS& a_params);
 		void     AddLight(BSLight* a_light);
+		void     EnableLight(BSLight* a_light)
+		{
+			using func_t = void (*)(ShadowSceneNode*, BSLight*);
+			static REL::Relocation<func_t> func{ RELOCATION_ID(99708, 106342) };
+			func(this, a_light);
+		}
+		void SetShadowCasterLightArrayEntry(BSLight* a_light, std::uint32_t a_startIndex, std::uint32_t a_count)
+		{
+			using func_t = void (*)(ShadowSceneNode*, BSLight*, std::uint32_t, std::uint32_t);
+			static REL::Relocation<func_t> func{ RELOCATION_ID(99728, 106365) };
+			func(this, a_light, a_startIndex, a_count);
+		}
 
 		// Convenience overload for a non-shadow, non-portal-strict, never-fading light.
 		void AddLight(NiLight* a_light)

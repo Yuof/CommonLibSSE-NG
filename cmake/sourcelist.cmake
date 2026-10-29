@@ -488,6 +488,7 @@ set(SOURCES
 	include/RE/B/BSVirtualKeyboardDevice.h
 	include/RE/B/BSVisit.h
 	include/RE/B/BSVolumetricLightingRenderData.h
+	include/RE/B/BSVolumetricLightingTextureSize.h
 	include/RE/B/BSWaterShaderMaterial.h
 	include/RE/B/BSWaterShaderProperty.h
 	include/RE/B/BSWin32GamepadDevice.h
@@ -520,6 +521,7 @@ set(SOURCES
 	include/RE/B/BottomBar.h
 	include/RE/B/BoundItemEffect.h
 	include/RE/B/ButtonEvent.h
+	include/RE/B/VolumetricLightingDescriptor.h
 	include/RE/B/bhkAction.h
 	include/RE/B/bhkBackfaceContactListener.h
 	include/RE/B/bhkBlendCollisionObject.h
@@ -1628,6 +1630,7 @@ set(SOURCES
 	include/RE/N/NiPlane.h
 	include/RE/N/NiPoint2.h
 	include/RE/N/NiPoint3.h
+	include/RE/N/NiPoint4.h
 	include/RE/N/NiPointLight.h
 	include/RE/N/NiProperty.h
 	include/RE/N/NiQuaternion.h
@@ -2233,6 +2236,7 @@ set(SOURCES
 	src/RE/B/BSValueNode.cpp
 	src/RE/B/BSVirtualKeyboardDevice.cpp
 	src/RE/B/BSVisit.cpp
+	src/RE/B/BSVolumetricLightingTextureSize.cpp
 	src/RE/B/BSWin32GamepadDevice.cpp
 	src/RE/B/BSWin32KeyboardDevice.cpp
 	src/RE/B/BSWin32MouseDevice.cpp
@@ -2247,6 +2251,7 @@ set(SOURCES
 	src/RE/B/BleedoutCameraState.cpp
 	src/RE/B/BookMenu.cpp
 	src/RE/B/BooksRead.cpp
+	src/RE/B/VolumetricLightingDescriptor.cpp
 	src/RE/B/bhkCharProxyController.cpp
 	src/RE/B/bhkCollisionFilter.cpp
 	src/RE/B/bhkRigidBody.cpp

@@ -7,10 +7,30 @@ namespace RE
 {
 	namespace BSGraphics
 	{
+		void State::UpdateCameraData(std::uint32_t a_flags)
+		{
+			using func_t = void (*)(State*, std::uint32_t);
+			static REL::Relocation<func_t> func{ RELOCATION_ID(75472, 77258) };
+			func(this, a_flags);
+		}
+
+		void SetDirtyStates(bool a_isCompute)
+		{
+			using func_t = void (*)(bool);
+			static REL::Relocation<func_t> func{ RELOCATION_ID(75580, 77386) };
+			func(a_isCompute);
+		}
+
 		Renderer* Renderer::GetSingleton() noexcept
 		{
 			static REL::Relocation<Renderer*> singleton{ RELOCATION_ID(524907, 411393) };
 			return singleton.get();
+		}
+
+		bool& Renderer::GetVolumetricLightingEnabled() noexcept
+		{
+			static REL::Relocation<bool*> enabled{ RELOCATION_ID(527940, 414913) };
+			return *enabled;
 		}
 
 		NiTexture::RendererData* Renderer::CreateRenderTexture(std::uint32_t a_width, std::uint32_t a_height)
@@ -133,6 +153,20 @@ namespace RE
 			using func_t = decltype(&Renderer::UpdateViewPort);
 			static REL::Relocation<func_t> func{ RELOCATION_ID(75455, 77240) };
 			return func(this, a_unk1, a_unk2, a_unk3);
+		}
+
+		REX::W32::ID3D11Buffer** Renderer::GetID3D11Resource(std::uint64_t a_bufferType, std::uint32_t** a_outIndex, std::uint32_t a_bufferKind)
+		{
+			using func_t = decltype(&Renderer::GetID3D11Resource);
+			static REL::Relocation<func_t> func{ RELOCATION_ID(75561, 77362) };
+			return func(this, a_bufferType, a_outIndex, a_bufferKind);
+		}
+
+		void Renderer::DrawIndexedInstancedTriangles(TriShape* a_buffers, std::uint32_t a_startIndex, std::int32_t a_triangleCount, std::int32_t a_instanceCount, VertexDesc a_vertexDesc, VertexBuffer* a_secondaryStream)
+		{
+			using func_t = decltype(&Renderer::DrawIndexedInstancedTriangles);
+			static REL::Relocation<func_t> func{ RELOCATION_ID(75479, 77265) };
+			func(this, a_buffers, a_startIndex, a_triangleCount, a_instanceCount, a_vertexDesc, a_secondaryStream);
 		}
 
 		void Renderer::ApplyState(bool a_arg2)

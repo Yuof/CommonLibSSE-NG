@@ -2,6 +2,12 @@
 
 namespace RE
 {
+	NiPoint3& Sun::GetSunPosition() noexcept
+	{
+		static REL::Relocation<NiPoint3*> position{ RELOCATION_ID(527924, 414871) };
+		return *position;
+	}
+
 	void Sun::SubmitOcclusionQuery(std::uint32_t a_renderFlags, BSShaderAccumulator* a_accumulator, NiCamera* a_camera)
 	{
 		using func_t = decltype(&Sun::SubmitOcclusionQuery);

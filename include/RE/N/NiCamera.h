@@ -5,7 +5,9 @@
 #include "RE/N/NiFrustum.h"
 #include "RE/N/NiMatrix3.h"
 #include "RE/N/NiPoint3.h"
+#include "RE/N/NiPoint4.h"
 #include "RE/N/NiRect.h"
+#include "REL/Relocation.h"
 #include "REL/RuntimeDataAccessors.h"
 
 namespace RE
@@ -77,6 +79,17 @@ namespace RE
 		static bool BoundInFrustum(const NiBound& a_bound, RE::NiCamera* a_camera);
 		bool        NodeInFrustum(NiAVObject* a_node);
 		bool        PointInFrustum(const NiPoint3& a_point, float a_radius);
+		void        CalculateFrustumOverlap(const NiPoint4* a_coord, NiPoint3* a_r1, NiPoint3* a_r2, float a_epsilon)
+		{
+			static REL::Relocation<std::uintptr_t> address{ RELOCATION_ID(69265, 70632) };
+			if (REL::Module::IsVR()) {
+				using func_t = void (*)(NiCamera*, const NiPoint4*, NiPoint3*, NiPoint3*, std::int32_t, float);
+				reinterpret_cast<func_t>(address.address())(this, a_coord, a_r1, a_r2, -1, a_epsilon);
+			} else {
+				using func_t = void (*)(NiCamera*, const NiPoint4*, NiPoint3*, NiPoint3*, float);
+				reinterpret_cast<func_t>(address.address())(this, a_coord, a_r1, a_r2, a_epsilon);
+			}
+		}
 
 		bool        WindowPointToRay(std::int32_t a_x, std::int32_t a_y, NiPoint3& a_origin, NiPoint3& a_dir, float a_windowWidth, float a_windowHeight);
 		bool        WorldPtToScreenPt3(const NiPoint3& a_point, float& a_xOut, float& a_yOut, float& a_zOut, float a_zeroTolerance);

@@ -24,7 +24,8 @@ namespace RE
 			kLocalMap = 0x12,
 			kLodLandscapePass = 0x14,
 			kWaterReflectionPass = 0x15,
-			kBloodDecalPass = 0x16,
+			kFirstPersonView = 0x16,
+			kBloodDecalPass = kFirstPersonView,
 			kAlphaTransparencyShadowPass = 0x17,  // no-op on SE/AE/VR (verified: bare `return`)
 			// Slot 0x18 dispatches unrelated code per runtime, so it's aliased below rather than
 			// given one shared name.
@@ -72,8 +73,13 @@ namespace RE
 
 		[[nodiscard]] static BSShaderAccumulator* Create(std::uint32_t a_unk);
 		[[nodiscard]] static BSShaderAccumulator* GetCurrentAccumulator();
-		static void                               SetCurrentAccumulator(BSShaderAccumulator* a_accumulator);
-		void                                      RenderFirstPersonView_End(bool a_force);
+		[[nodiscard]] static BSShaderAccumulator* GetMainAccumulator() noexcept
+		{
+			static REL::Relocation<BSShaderAccumulator**> accumulator{ RELOCATION_ID(528064, 415009) };
+			return *accumulator;
+		}
+		static void SetCurrentAccumulator(BSShaderAccumulator* a_accumulator);
+		void        RenderFirstPersonView_End(bool a_force);
 
 		~BSShaderAccumulator() override = default;  // 00
 

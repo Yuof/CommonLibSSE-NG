@@ -1,5 +1,8 @@
 #pragma once
 
+#include "RE/B/BSCullingProcess.h"
+#include "REL/Relocation.h"
+
 namespace RE
 {
 	class BSGeometryListCullingProcess : public BSCullingProcess
@@ -8,6 +11,12 @@ namespace RE
 		inline static constexpr auto RTTI = RTTI_BSGeometryListCullingProcess;
 		inline static constexpr auto Ni_RTTI = NiRTTI_BSGeometryListCullingProcess;
 		inline static constexpr auto VTABLE = VTABLE_BSGeometryListCullingProcess;
+
+		[[nodiscard]] static BSTArray<BSGeometryListCullingProcess*>& GetGlobalCullingProcesses() noexcept
+		{
+			static REL::Relocation<BSTArray<BSGeometryListCullingProcess*>*> processes{ RELOCATION_ID(528077, 415022) };
+			return *processes;
+		}
 
 		// override (BSCullingProcess)
 		const NiRTTI* GetRTTI() const override;  // 00
