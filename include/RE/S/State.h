@@ -247,6 +247,7 @@ namespace RE
 				static REL::Relocation<State*> singleton{ RELOCATION_ID(524998, 411479) };
 				return singleton.get();
 			}
+			void UpdateCameraData(std::uint32_t a_flags);
 
 			CameraStateData* FindCameraDataCache(const NiCamera* a_camera, bool a_useJitter)
 			{

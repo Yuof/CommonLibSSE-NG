@@ -17,6 +17,8 @@ namespace RE
 
 		~BSSceneGraph() override;  // 00
 
+		static BSSceneGraph* GetWorldSceneGraph();
+
 		// override (NiNode)
 		const NiRTTI* GetRTTI() const override;  // 02
 

@@ -4,6 +4,12 @@
 
 namespace RE
 {
+	BSSceneGraph* BSSceneGraph::GetWorldSceneGraph()
+	{
+		static REL::Relocation<BSSceneGraph**> worldSceneGraph{ RELOCATION_ID(528087, 415032) };
+		return *worldSceneGraph;
+	}
+
 #ifdef SKYRIM_CROSS_VR
 	float BSSceneGraph::GetFarDistance()
 	{

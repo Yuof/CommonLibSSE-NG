@@ -85,7 +85,8 @@ namespace RE
 		// override (BSTEventSink<PositionPlayerEvent>)
 		BSEventNotifyControl ProcessEvent(const PositionPlayerEvent* a_event, BSTEventSource<PositionPlayerEvent>* a_eventSource) override;  // 01
 
-		static TES* GetSingleton();
+		static TES*                        GetSingleton();
+		[[nodiscard]] static std::int32_t& GetGridsToLoadCopy();
 
 		void ForEachCell(std::function<void(TESObjectCELL*)> a_callback);
 		void ForEachCellInRange(TESObjectREFR* a_origin, float a_radius, std::function<void(TESObjectCELL*)> a_callback);

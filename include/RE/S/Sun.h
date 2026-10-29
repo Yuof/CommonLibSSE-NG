@@ -1,5 +1,6 @@
 #pragma once
 
+#include "RE/N/NiPoint3.h"
 #include "RE/N/NiSmartPointer.h"
 #include "RE/S/SkyObject.h"
 
@@ -23,8 +24,9 @@ namespace RE
 		void Init(NiNode* a_root) override;              // 02
 		void Update(Sky* a_sky, float a_arg2) override;  // 03
 
-		void SubmitOcclusionQuery(std::uint32_t a_renderFlags, BSShaderAccumulator* a_accumulator, NiCamera* a_camera);
-		void UpdateOcclusionQueries();
+		void                           SubmitOcclusionQuery(std::uint32_t a_renderFlags, BSShaderAccumulator* a_accumulator, NiCamera* a_camera);
+		void                           UpdateOcclusionQueries();
+		[[nodiscard]] static NiPoint3& GetSunPosition() noexcept;
 
 		// members
 		NiPointer<NiBillboardNode>     sunBaseNode;       // 10
