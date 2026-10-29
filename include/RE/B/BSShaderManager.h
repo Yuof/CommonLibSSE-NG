@@ -124,7 +124,7 @@ namespace RE
 			if (!REL::Module::IsVR()) {
 				return false;
 			}
-			static REL::Relocation<bool*> updateDue{ REL::Offset(0x1ED62F8) };
+			static REL::Relocation<bool*> updateDue{ REL::RelocationID(0, 0, 5401043704) };
 			return *updateDue;
 		}
 
