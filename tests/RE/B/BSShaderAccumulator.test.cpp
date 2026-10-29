@@ -61,11 +61,12 @@ TEST_CASE("BSShaderAccumulator/RuntimeDataOffsets", "[unit][shader-accumulator]"
 		}
 	}
 
-	SECTION("the flags sit at one offset on every runtime")
+	SECTION("the flags sit at the runtime's offset")
 	{
-		CHECK(reinterpret_cast<std::byte*>(&accumulator->GetRuntimeFlags()) == base + 0x128);
-		CHECK(reinterpret_cast<std::byte*>(&accumulator->GetRuntimeFlags().firstPerson) == base + 0x128);
-		CHECK(reinterpret_cast<std::byte*>(&accumulator->GetRuntimeFlags().drawDecals) == base + 0x12C);
+		const auto flags = runtime == Runtime::VR ? 0x150 : 0x128;
+		CHECK(reinterpret_cast<std::byte*>(&accumulator->GetRuntimeFlags()) == base + flags);
+		CHECK(reinterpret_cast<std::byte*>(&accumulator->GetRuntimeFlags().firstPerson) == base + flags);
+		CHECK(reinterpret_cast<std::byte*>(&accumulator->GetRuntimeFlags().drawDecals) == base + flags + 0x4);
 	}
 }
 #endif
