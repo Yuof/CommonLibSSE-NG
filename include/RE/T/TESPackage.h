@@ -188,8 +188,9 @@ namespace RE
 		kDone = 54
 	};
 
-	// Result of the GetCurrentAIProcedure condition function (names from the Fallout 3 table, as on the CK wiki).
-	// 13, 25, 26 and 38 are never returned; kNone is returned for procedures with no number.
+	// Result of the GetCurrentAIProcedure condition function. Names are the Fallout 3 names used on
+	// https://ck.uesp.net/wiki/GetCurrentAIProcedure; 13, 25, 26 and 38 are never returned, and kNone is returned
+	// for procedures with no number.
 	enum class CONDITION_AI_PROCEDURE : std::int32_t
 	{
 		kNone = -1,
