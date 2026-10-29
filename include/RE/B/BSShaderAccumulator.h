@@ -1,7 +1,9 @@
 #pragma once
 
+#include "RE/B/BSTArray.h"
 #include "RE/N/NiAlphaAccumulator.h"
 #include "RE/N/NiColor.h"
+#include "RE/N/NiSmartPointer.h"
 #include "REL/RuntimeDataAccessors.h"
 #include "REX/REX/EnumSet.h"
 
@@ -66,6 +68,15 @@ namespace RE
 			bool          waiting;          // 14
 		};
 		static_assert(sizeof(SunOcclusionTest) == 0x18);
+
+		// VR only: geometry that AccumulateObject queued for StepBatchList.
+		struct DeferredAccumulation
+		{
+		public:
+			NiPointer<BSGeometry>           geometry;  // 00
+			BSBatchRenderer::GeometryGroup* group;     // 08
+		};
+		static_assert(sizeof(DeferredAccumulation) == 0x10);
 
 		inline static constexpr auto RTTI = RTTI_BSShaderAccumulator;
 		inline static constexpr auto Ni_RTTI = NiRTTI_BSShaderAccumulator;
@@ -161,55 +172,52 @@ namespace RE
 
 		struct VR_RUNTIME_DATA
 		{
-#define VR_RUNTIME_DATA_CONTENT                          \
-	std::uint8_t     unk58[0x4];               /* 58 */  \
-	bool             useEqualDepthTest;        /* 5C */  \
-	std::uint32_t    sunPixelCount;            /* 60 */  \
-	bool             waitingForSunQuery;       /* 64 */  \
-	float            percentSunOccludedStored; /* 68 */  \
-	std::uint8_t     pad6C[0x4];               /* 6C */  \
-	SunOcclusionTest sunOcclusionTests[3];     /* 70 */  \
-	bool             unkB8;                    /* B8 */  \
-	bool             noFade;                   /* B9 */  \
-	bool             unkBA;                    /* BA */  \
-	std::uint8_t     padBB[0x5];               /* BB */  \
-	void*            batchListData;            /* C0 */  \
-	std::uint8_t     unkC8[0x8];               /* C8 */  \
-	std::uint32_t    batchListCount;           /* D0 */  \
-	std::uint8_t     padD4[0x4];               /* D4 */  \
-	std::uint32_t    batchListCursor;          /* D8 */  \
-	bool             unkDC;                    /* DC */  \
-	std::uint8_t     padDD[0xB];               /* DD */  \
-	std::uint8_t     unkE8[0x10];              /* E8 */  \
-	std::uint8_t     fadeNodeMap[0x20];        /* F8 */  \
-	std::uint8_t     unk118[0x10];             /* 118 */ \
-	void*            unk128;                   /* 128 */ \
-	void*            unk130;                   /* 130 */ \
-	std::uint32_t    unk138;                   /* 138 */ \
-	bool             unk13C;                   /* 13C */ \
-	NiColorA         silhouetteColor;          /* 140 */ \
-	bool             firstPerson;              /* 150 */ \
-	bool             unk151;                   /* 151 */ \
-	bool             unk152;                   /* 152 */ \
-	bool             unk153;                   /* 153 */ \
-	bool             drawDecals;               /* 154 */ \
-	bool             isShadowMapAccumulator;   /* 155 */ \
-	bool             isDirectionalShadowMap;   /* 156 */ \
-	std::uint8_t     unk157;                   /* 157 */ \
-	BSBatchRenderer* batchRenderer;            /* 158 */ \
-	std::uint32_t    currentPass;              /* 160 */ \
-	std::uint32_t    currentBucket;            /* 164 */ \
-	bool             currentActive;            /* 168 */ \
-	std::uint8_t     pad169[0x7];              /* 169 */ \
-	ShadowSceneNode* activeShadowSceneNode;    /* 170 */ \
-	RENDER_MODE      renderMode;               /* 178 */ \
-	std::uint8_t     pad17c[0x4];              /* 17C */ \
-	void*            unk180;                   /* 180 */ \
-	std::uint32_t    flagOverrideMode;         /* 188 */ \
-	std::uint32_t    flagOverrideMask;         /* 18C */ \
-	std::uint32_t    shadowMapIndex;           /* 190 */ \
-	NiPoint3         eyePosition;              /* 194 */ \
-	std::uint8_t     unk1A0[0x10];             /* 1A0 */
+#define VR_RUNTIME_DATA_CONTENT                                        \
+	std::uint8_t                   unk58[0x4];               /* 58 */  \
+	bool                           useEqualDepthTest;        /* 5C */  \
+	std::uint32_t                  sunPixelCount;            /* 60 */  \
+	bool                           waitingForSunQuery;       /* 64 */  \
+	float                          percentSunOccludedStored; /* 68 */  \
+	std::uint8_t                   pad6C[0x4];               /* 6C */  \
+	SunOcclusionTest               sunOcclusionTests[3];     /* 70 */  \
+	bool                           unkB8;                    /* B8 */  \
+	bool                           noFade;                   /* B9 */  \
+	bool                           unkBA;                    /* BA */  \
+	std::uint8_t                   padBB[0x5];               /* BB */  \
+	BSTArray<DeferredAccumulation> deferredAccumulations;    /* C0 */  \
+	std::uint32_t                  deferredCursor;           /* D8 */  \
+	bool                           unkDC;                    /* DC */  \
+	std::uint8_t                   padDD[0xB];               /* DD */  \
+	std::uint8_t                   unkE8[0x10];              /* E8 */  \
+	std::uint8_t                   fadeNodeMap[0x20];        /* F8 */  \
+	std::uint8_t                   unk118[0x10];             /* 118 */ \
+	void*                          unk128;                   /* 128 */ \
+	void*                          unk130;                   /* 130 */ \
+	std::uint32_t                  unk138;                   /* 138 */ \
+	bool                           unk13C;                   /* 13C */ \
+	NiColorA                       silhouetteColor;          /* 140 */ \
+	bool                           firstPerson;              /* 150 */ \
+	bool                           unk151;                   /* 151 */ \
+	bool                           unk152;                   /* 152 */ \
+	bool                           unk153;                   /* 153 */ \
+	bool                           drawDecals;               /* 154 */ \
+	bool                           isShadowMapAccumulator;   /* 155 */ \
+	bool                           isDirectionalShadowMap;   /* 156 */ \
+	std::uint8_t                   unk157;                   /* 157 */ \
+	BSBatchRenderer*               batchRenderer;            /* 158 */ \
+	std::uint32_t                  currentPass;              /* 160 */ \
+	std::uint32_t                  currentBucket;            /* 164 */ \
+	bool                           currentActive;            /* 168 */ \
+	std::uint8_t                   pad169[0x7];              /* 169 */ \
+	ShadowSceneNode*               activeShadowSceneNode;    /* 170 */ \
+	RENDER_MODE                    renderMode;               /* 178 */ \
+	std::uint8_t                   pad17c[0x4];              /* 17C */ \
+	void*                          unk180;                   /* 180 */ \
+	std::uint32_t                  flagOverrideMode;         /* 188 */ \
+	std::uint32_t                  flagOverrideMask;         /* 18C */ \
+	std::uint32_t                  shadowMapIndex;           /* 190 */ \
+	NiPoint3                       eyePosition;              /* 194 */ \
+	std::uint8_t                   unk1A0[0x10];             /* 1A0 */
 
 			VR_RUNTIME_DATA_CONTENT
 		};
@@ -218,8 +226,8 @@ namespace RE
 		static_assert(offsetof(VR_RUNTIME_DATA, sunOcclusionTests) == 0x70 - 0x58);
 		static_assert(offsetof(VR_RUNTIME_DATA, fadeNodeMap) == 0xF8 - 0x58);
 		static_assert(offsetof(VR_RUNTIME_DATA, silhouetteColor) == 0x140 - 0x58);
-		static_assert(offsetof(VR_RUNTIME_DATA, batchListCount) == 0xD0 - 0x58);
-		static_assert(offsetof(VR_RUNTIME_DATA, batchListCursor) == 0xD8 - 0x58);
+		static_assert(offsetof(VR_RUNTIME_DATA, deferredAccumulations) == 0xC0 - 0x58);
+		static_assert(offsetof(VR_RUNTIME_DATA, deferredCursor) == 0xD8 - 0x58);
 		static_assert(offsetof(VR_RUNTIME_DATA, firstPerson) == kFlagsOffsetVR - 0x58);
 		static_assert(offsetof(VR_RUNTIME_DATA, drawDecals) == kFlagsOffsetVR - 0x58 + 0x4);
 		static_assert(offsetof(VR_RUNTIME_DATA, batchRenderer) == kRuntimeDataVR - 0x58);
