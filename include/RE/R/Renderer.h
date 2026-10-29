@@ -240,13 +240,13 @@ namespace RE
 				if (!REL::Module::IsVR()) {
 					return nullptr;
 				}
-				static REL::Relocation<REX::W32::ID3D11Buffer**> buffer{ REL::RelocationID(0, 0, 5420615304) };
+				static REL::Relocation<REX::W32::ID3D11Buffer**> buffer{ REL::Offset(0x3180688) };
 				return *buffer;
 			}
 			[[nodiscard]] static bool& GetVRDepthBufferCullingEnabled() noexcept
 			{
 				if (REL::Module::IsVR()) {
-					static REL::Relocation<bool*> enabled{ REL::RelocationID(0, 0, 5400980360) };
+					static REL::Relocation<bool*> enabled{ REL::Offset(0x1ec6b88) };
 					return *enabled;
 				}
 				static bool dummy = false;
@@ -255,7 +255,7 @@ namespace RE
 			[[nodiscard]] static float& GetVRMinOccludeeBoxExtent() noexcept
 			{
 				if (REL::Module::IsVR()) {
-					static REL::Relocation<float*> extent{ REL::RelocationID(0, 0, 5401044200) };
+					static REL::Relocation<float*> extent{ REL::Offset(0x1ed64e8) };
 					return *extent;
 				}
 				static float dummy = 0.0F;
@@ -268,7 +268,7 @@ namespace RE
 			[[nodiscard]] static bool& GetDrawStereo() noexcept
 			{
 				if (REL::Module::IsVR()) {
-					static REL::Relocation<bool*> drawStereo{ REL::RelocationID(0, 0, 5420619528) };
+					static REL::Relocation<bool*> drawStereo{ REL::Offset(0x3181708) };
 					return *drawStereo;
 				}
 				static bool dummy = false;

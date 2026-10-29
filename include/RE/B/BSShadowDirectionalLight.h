@@ -49,7 +49,7 @@ namespace RE
 				return;
 			}
 			using func_t = void (*)(BSShadowDirectionalLight*);
-			static REL::Relocation<func_t> func{ REL::RelocationID(0, 0, 5388987984) };
+			static REL::Relocation<func_t> func{ REL::Offset(0x1356e50) };
 			func(this);
 		}
 
@@ -59,7 +59,7 @@ namespace RE
 				return;
 			}
 			using func_t = void (*)(BSShadowDirectionalLight*);
-			static REL::Relocation<func_t> func{ REL::RelocationID(0, 0, 5388989520) };
+			static REL::Relocation<func_t> func{ REL::Offset(0x1357450) };
 			func(this);
 		}
 
